@@ -3,7 +3,7 @@ from africastalking import SMS
 from dotenv import load_dotenv
 
 
-load_dotenv('.env')
+load_dotenv('load.env')
 
 
 class SMSNotifier:
