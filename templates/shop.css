@@ -1,0 +1,229 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    height: 100vh;
+    background: url('10-local.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+header h1 {
+    color: #fff;
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: slideDown 2s ease forwards;
+}
+
+header p {
+    color: #ddd;
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    animation: fadeIn 3s ease forwards;
+}
+
+header .cta-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    animation: bounce 1.5s ease infinite;
+}
+
+header .cta-btn:hover {
+    background-color: #45a049;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Navigation Styling */
+.category-nav {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.category-nav ul {
+    list-style: none;
+}
+
+.category-nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.category-nav ul li:hover {
+    color: #4CAF50;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.product-card {
+    background-color: white;
+    width: 250px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 15px 0;
+    font-size: 1.5em;
+}
+
+.product-card p {
+    font-size: 1.2em;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+}
+
+.modal img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.modal h3 {
+    font-size: 1.8em;
+}
+
+.modal p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2em;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: red;
+}
+
+/* button */
+/* Buy Now Button in Modal */
+.buy-now-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.buy-now-btn:hover {
+    background-color: #45a049;
+}
+

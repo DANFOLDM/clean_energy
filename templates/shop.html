@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-venture Products Store</title>
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+    <header>
+        <div class="overlay">
+            <h1>Eco-Friendly Products Store</h1>
+            <p>Find the best products that are sustainable, recyclable, and organic!</p>
+            <a href="#products" class="cta-btn">Shop Now</a>
+        </div>
+    </header>
+
+    <nav class="category-nav">
+        <ul>
+            <li data-category="all">All Products</li>
+            <li data-category="recycled">Recycled Products</li>
+            <li data-category="biodegradable">Biodegradable Products</li>
+            <li data-category="organic">Organic Products</li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="products" class="product-grid">
+            <!-- Recycled Products -->
+            <div class="product-card" data-category="recycled">
+                <img src="bag.webp" alt="Recycled Bag">
+                <h3>Recycled Bag</h3>
+                <p>$15</p>
+                <button href="file:///C:/Users/USER/Desktop/ECO-VENTURES/paypage.html" class="view-details-btn">View Details</button>
+            </div>
+
+            <div class="product-card" data-category="recycled">
+                <img src="bottle.jpg" alt="Recycled Bottle">
+                <h3>Recycled Bottle</h3>
+                <p>$12</p>
+                <button class="view-details-btn">View Details</button>
+            </div>
+
+            <!-- Biodegradable Products -->
+            <div class="product-card" data-category="biodegradable">
+                <img src="straws.jpg" alt="Biodegradable Straw">
+                <h3>Biodegradable Straw</h3>
+                <p>$5</p>
+                <button class="view-details-btn">View Details</button>
+            </div>
+
+            <div class="product-card" data-category="biodegradable">
+                <img src="recyclable-tote-bag.webp" alt="Biodegradable Bag">
+                <h3>Biodegradable Bag</h3>
+                <p>$10</p>
+                <button class="view-details-btn">View Details</button>
+            </div>
+
+            <!-- Organic Products -->
+            <div class="product-card" data-category="organic">
+                <img src="CIGARR.webp" alt="Organic cigaret">
+                <h3>Organic cigaret</h3>
+                <p>$9</p>
+                <button href="file:///C:/Users/USER/Desktop/ECO-VENTURES/paypage.html" class="view-details-btn">View Details</button>
+            </div>
+
+            <div class="product-card" data-category="organic">
+                <img src="towel.webp" alt="Organic Towel">
+                <h3>Organic Towel</h3>
+                <p>$20</p>
+                <button class="view-details-btn">View Details</button>
+            </div>
+        </section>
+
+        <!-- Product Modal -->
+<div class="modal" id="product-modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <img src="" alt="Product Image" id="modal-img">
+        <h3 id="modal-title"></h3>
+        <p id="modal-price"></p>
+        <p id="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at tincidunt ligula, at varius massa.</p>
+        <button class="buy-now-btn">Buy Now</button> <!-- New Buy Now button -->
+        <button onclick="goToNewPage()">BUY</button>
+    </div>
+</div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Eco-Friendly Products Store</p>
+    </footer>
+
+    <script src="shop.js"></script>
+</body>
+</html>

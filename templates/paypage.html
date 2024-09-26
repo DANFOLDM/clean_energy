@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ECO-VENTURESS</title>
+        <link rel="stylesheet" href="paypage.css">
+    </head>
+
+<body>
+
+    <div class="container">
+        <h1>Order Confirmation</h1>
+    
+        <div class="grid-container">
+            <!-- Product Details & Buyer Information -->
+            <div>
+                <!-- Product Section -->
+                <div class="product-section">
+                    <img src="CIGARR.webp" alt="Product Image">
+                    <div class="product-details">
+                        <h2>ECO BLAZE</h2>
+                        <p>Price: $99.99</p>
+                        <p>Quantity: 1</p>
+                        <p>Total: $99.99</p>
+                    </div>
+                </div>
+    
+                <!-- Buyer Information -->
+                <div class="buyer-info">
+                    <h2>Buyer's Information</h2>
+                    <form id="buyer-form">
+                        <label for="buyer-name">Full Name</label>
+                        <input type="text" id="buyer-name" name="buyer-name" placeholder="Enter your full name" required>
+    
+                        <label for="buyer-email">Email Address</label>
+                        <input type="email" id="buyer-email" name="buyer-email" placeholder="Enter your email" required>
+    
+                        <label for="buyer-address">Shipping Address</label>
+                        <textarea id="buyer-address" name="buyer-address" placeholder="Enter your shipping address" required></textarea>
+                    </form>
+                </div>
+    
+                <!-- Pick-Up Information -->
+                <div class="pickup-info">
+                    <h2>Pick-Up Points</h2>
+                    <label for="pickup-point">Choose Pickup Point:</label>
+                    <select id="pickup-point" name="pickup-point">
+                        <option value="Main Street">Main Street - Central</option>
+                        <option value="East Gate">East Gate - Westend</option>
+                        <option value="Market Road">Market Road - South</option>
+                    </select>
+    
+                    
+                </div>
+            </div>
+    
+            <!-- Order Summary & Payment -->
+            <div class="order-summary-section">
+                <!-- Order Summary -->
+                <h3>Order Summary</h3>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>$99.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>$5.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Discount</span>
+                    <span>-$10.00</span>
+                </div>
+                <div class="summary-item total-amount">
+                    <span>Total</span>
+                    <span>$94.99</span>
+                </div>
+    
+                <div class="payment-methods">
+                    <h3>Payment Method</h3>
+                    <label>
+                        <input type="radio" name="payment" value="mobile-payment" required> Mobile Payment (e.g. M-Pesa)
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="cash-on-delivery" required> Cash on Delivery
+                    </label>
+                </div>
+                
+                <!-- Modal for age verification -->
+                <div class="modal" id="ageVerificationModal">
+                    <div class="modal-content">
+                        <h3>Are you 18 or older?</h3>
+                        <p>To proceed with the purchase of alcohol, you must verify your age using Privado.id.</p>
+                        <p>Scan the QR code or click the button below to manually register:</p>
+                        <img src="IMG-20240908-WA0000 (1).jpg" alt="QR Code for Privado.id" />
+                        <br />
+                        <button onclick="redirectToPrivado()">Register with Privado.id</button>
+                        <button onclick="closeModal()">Cancel</button>
+                    </div>
+                </div>
+                
+                <p>Phone Number: <input type="text" id="phone_number" placeholder="Enter phone number" /></p>
+                <button id="confirm_button" onclick="confirmOrder()">Confirm Order</button>
+                
+                <div id="message"></div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="paypage.js"></script>
+
+
+</body>
+</html>
