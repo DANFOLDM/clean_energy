@@ -7,51 +7,77 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
+    <header class="solar-header">
+        <nav class="solar-nav">
+            <div class="solar-logo">
                 <h1>SolarConnect</h1>
             </div>
-            <ul class="nav-links">
+            <ul class="solar-nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/register">Sign Up</a></li>
                 <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
+    
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="container3">
             <h2>Welcome to SolarConnect!</h2>
             <p>Your smart solution for energy consumption tracking and solar power management. Monitor your energy use, get real-time updates, and make smarter decisions with Africa's Talking APIs integrated for payments and notifications.</p>
             <a href="/register" class="btn">Get Started</a>
         </div>
-    </section>
+    </section>"  
+
 
     <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h3>Why SolarConnect?</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <img src="{{ url_for('static', filename='images/monitoring.jpg') }}" alt="Real-Time Monitoring" class="feature-image">
-                    <h4>Real-Time Energy Monitoring</h4>
-                    <p>Track your energy usage in real time and optimize solar power efficiency.</p>
-                </div>
-                <div class="feature-card">
-                    <img src="{{ url_for('static', filename='images/payments.jpg') }}" alt="Payments Integration" class="feature-image">
-                    <h4>Payments Integration</h4>
-                    <p>Easily pay for energy consumption and recharge with Africa's Talking API.</p>
-                </div>
-                <div class="feature-card">
-                    <img src="{{ url_for('static', filename='images/alerts.jpg') }}" alt="Notifications and Alerts" class="feature-image">
-                    <h4>Notifications & Alerts</h4>
-                    <p>Get SMS and USSD alerts on energy consumption, outages, and payments.</p>
-                </div>
+<section class="features">
+    <div class="container">
+        <h3>Why SolarConnect?</h3>
+        <div class="features-grid">
+            <!-- Feature Card 1 -->
+            <div class="feature-card" data-url="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/monitoring.jpg') }}" alt="Real-Time Monitoring" class="feature-image">
+                <h4>Real-Time Energy Monitoring</h4>
+                <p>Track your energy usage in real time and optimize solar power efficiency.</p>
+            </div>
+            <!-- Feature Card 2 -->
+            <div class="feature-card" data-url="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/Solareducate.jpg') }}" alt="Get Educated" class="feature-image">
+                <h4>GET EDUCATED</h4>
+                <p>Easily pay for energy consumption and recharge with Africa's Talking API.</p>
+            </div>
+            <!-- Feature Card 3 -->
+            <div class="feature-card" data-url="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/solargadget.jpg') }}" alt="Buy Gadgets" class="feature-image">
+                <h4>BUY GADGETS</h4>
+                <p>Get SMS and USSD alerts on energy consumption, outages, and payments.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        // Add click event to each card
+        featureCards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                // Get the URL from data-url attribute
+                const loginPageUrl = card.getAttribute('data-url');
+                
+                // Redirect to the login page
+                window.location.href = loginPageUrl;
+            });
+        });
+    });
+</script>
+
 
     <!-- Footer -->
     <footer>

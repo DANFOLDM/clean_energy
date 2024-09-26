@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from forms import RegistrationForm, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash  # For hashing passwords
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -9,7 +10,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'  # Redirect to login page if not authenticated
 
-# Mock user data (replace this with database connection later)
+# Mock user data (replace this with a database connection later)
 users = {}
 
 # User class for Flask-Login
@@ -20,7 +21,7 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
-    # Get the user by ID
+    # Get the user by ID from the "database"
     if user_id in users:
         return User(user_id, users[user_id]['username'])
     return None
@@ -33,9 +34,16 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # Hashing password for security before saving
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+        
         # Saving user data (for now, storing in memory)
-        user_id = len(users) + 1
-        users[user_id] = {'username': form.username.data, 'email': form.email.data, 'password': form.password.data}
+        user_id = str(len(users) + 1)  # User IDs as strings for compatibility
+        users[user_id] = {
+            'username': form.username.data, 
+            'email': form.email.data, 
+            'password': hashed_password
+        }
         
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('login'))
@@ -47,7 +55,7 @@ def login():
     if form.validate_on_submit():
         # Simulating a user lookup (replace with database lookup)
         for user_id, user_info in users.items():
-            if user_info['email'] == form.email.data and user_info['password'] == form.password.data:
+            if user_info['email'] == form.email.data and check_password_hash(user_info['password'], form.password.data):
                 user = User(user_id, user_info['username'])
                 login_user(user)  # Log the user in
                 flash('Login successful!', 'success')

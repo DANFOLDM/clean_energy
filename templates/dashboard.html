@@ -2,92 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolarConnect Dashboard</title>
-
-    <!-- External CSS and JavaScript Libraries -->
+    <title>Energy Usage Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for graphs -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome for icons -->
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-container">
-            <h1>Welcome, {{ user_data['username'] }}</h1>
-            <nav>
-                <ul>
-                    <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="/settings"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Content Section -->
-    <main class="dashboard">
-        
-        <!-- Energy Consumption Section -->
-        <div id="energy-consumption-section" class="section">
-            <h2><i class="fas fa-bolt"></i> Current Energy Consumption</h2>
-            <p>You have used <strong>{{ user_data['current_consumption'] }} kWh</strong> so far this month.</p>
-            <p><i class="fas fa-sun"></i> Solar energy generated: <strong>{{ user_data['solar_generated'] }} kWh</strong></p>
+<body class="custom-body">
+    <div class="custom-dashboard">
+        <div class="custom-header">
+            <h1>Home Energy Usage</h1>
         </div>
 
-        <!-- Graph Section -->
-        <div id="graph-section" class="section">
-            <h2><i class="fas fa-chart-line"></i> Daily Energy Consumption (Last 7 Days)</h2>
-            <canvas id="consumptionChart" width="400" height="200"></canvas> <!-- Canvas for Chart.js -->
+        <div class="custom-main-content">
+            <!-- Left Panels -->
+            <div class="custom-left-panel">
+                <div class="custom-top-items">
+                    <div class="custom-item custom-oven">Oven 1 Min<br><span>3.83 kW</span></div>
+                    <div class="custom-item custom-furnace">Gas Furnace 1 Min<br><span>380 W</span></div>
+                    <div class="custom-item custom-bedroom">Guest Bedroom 1 Min<br><span>269 W</span></div>
+                    <div class="custom-item custom-office">Office 1 Min<br><span>231 W</span></div>
+                    <div class="custom-item custom-living-room">Living Room 1 Min<br><span>176 W</span></div>
+                </div>
+
+                <div class="custom-power-total">
+                    <h2>Current Day Power Total</h2>
+                    <div class="custom-value">11.1 kWh</div>
+                </div>
+
+                <div class="custom-power-cost">
+                    <h2>Current Day Power Cost</h2>
+                    <div class="custom-value">$1.07</div>
+                </div>
+
+                <div class="custom-charts">
+                    <h3>Hourly Power Usage by Device</h3>
+                    <canvas id="customPowerChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Panels -->
+            <div class="custom-right-panel">
+                <div class="custom-month-usage">
+                    <h2>Current Month Total Power Usage</h2>
+                    <div class="custom-value">940 kWh</div>
+                </div>
+
+                <div class="custom-month-bill">
+                    <h2>Current Month Bill</h2>
+                    <div class="custom-value">$109.24</div>
+                </div>
+
+                <div class="custom-power-grid">
+                    <h3>Month Power Total</h3>
+                    <canvas id="customPowerGrid"></canvas>
+                </div>
+
+                <div class="custom-top-devices">
+                    <h3>Top 5 Devices (Last Week)</h3>
+                    <canvas id="customDevicesPieChart"></canvas>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Budget Recommendation Section -->
-        <div id="recommendation-section" class="section">
-            <h2><i class="fas fa-lightbulb"></i> Energy Saving Recommendation</h2>
-            <p>{{ user_data['recommendation'] }}</p>
-        </div>
-
-        <!-- Solar Purchase Section -->
-        <div id="purchase-options-section" class="section">
-            <h2><i class="fas fa-shopping-cart"></i> Purchase More Solar Energy</h2>
-            <button id="purchase-button"><i class="fas fa-sun"></i> Purchase Now</button>
-        </div>
-
-    </main>
-
-    <!-- Footer Section -->
-    <footer id="footer-section">
-        <p>© 2024 SolarConnect. All rights reserved.</p>
-    </footer>
-
-    <!-- JavaScript for Chart.js -->
-    <script>
-        var ctx = document.getElementById('consumptionChart').getContext('2d');
-        var consumptionChart = new Chart(ctx, {
-            type: 'line',
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script> 
+        // Hourly Power Usage by Device (Bar Chart)
+        const customPowerChart = document.getElementById('customPowerChart').getContext('2d');
+        new Chart(customPowerChart, {
+            type: 'bar',
             data: {
-                labels: {{ user_data['days'] | tojson | safe }}, // Example: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                labels: ['AC', 'Fridge', 'Heater', 'Laptop', 'Microwave', 'Television'],
                 datasets: [{
-                    label: 'Energy Consumption (kWh)',
-                    data: {{ user_data['consumption_data'] | tojson | safe }}, // Example: [10, 12, 8, 6, 14, 9, 11]
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2
+                    label: 'Power Usage (kWh)',
+                    data: [0.5, 0.3, 0.7, 0.1, 0.4, 0.2],
+                    backgroundColor: ['#ff5733', '#33ff57', '#5733ff', '#33fff0', '#f033ff', '#ff33a1'],
+                    borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+            }
+        });
+
+        // Month Power Total (Grid Chart)
+        const customPowerGrid = document.getElementById('customPowerGrid').getContext('2d');
+        new Chart(customPowerGrid, {
+            type: 'bar',
+            data: {
+                labels: ['AC', 'Fridge', 'Heater', 'Laptop', 'Microwave', 'Television', 'Washer', 'Dryer'],
+                datasets: [{
+                    label: 'Total Power (kWh)',
+                    data: [10, 7, 5, 3, 8, 4, 6, 2],
+                    backgroundColor: '#00ff00',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Top Devices (Pie Chart)
+        const customDevicesPieChart = document.getElementById('customDevicesPieChart').getContext('2d');
+        new Chart(customDevicesPieChart, {
+            type: 'pie',
+            data: {
+                labels: ['AC', 'Fridge', 'Heater', 'Laptop', 'Microwave'],
+                datasets: [{
+                    label: 'Top 5 Devices',
+                    data: [40, 30, 20, 5, 5],
+                    backgroundColor: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff'],
+                    borderWidth: 1
+                }]
             }
         });
     </script>
-
-    <!-- Additional JavaScript Files -->
-    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </body>
 </html>
