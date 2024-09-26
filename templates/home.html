@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CANDY SOLARCONNECT</title>
+    <title>CANDY ANGAZA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header class="solar-header">
         <nav class="solar-nav">
             <div class="solar-logo">
-                <h1>SolarConnect</h1>
+                <h1>Angaza</h1>
             </div>
             <ul class="solar-nav-links">
                 <li><a href="/">Home</a></li>
@@ -24,7 +24,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container3">
-            <h2>Welcome to SolarConnect!</h2>
+            <h2>Welcome to Angaza!</h2>
             <p>Your smart solution for energy consumption tracking and solar power management. Monitor your energy use, get real-time updates, and make smarter decisions with Africa's Talking APIs integrated for payments and notifications.</p>
             <a href="/register" class="btn">Get Started</a>
         </div>
@@ -34,7 +34,7 @@
     <!-- Features Section -->
 <section class="features">
     <div class="container">
-        <h3>Why SolarConnect?</h3>
+        <h3>Why Angaza?</h3>
         <div class="features-grid">
             <!-- Feature Card 1 -->
             <div class="feature-card" data-url="{{ url_for('login') }}">
@@ -49,8 +49,8 @@
                 <p>Easily pay for energy consumption and recharge with Africa's Talking API.</p>
             </div>
             <!-- Feature Card 3 -->
-            <div class="feature-card" data-url="{{ url_for('login') }}">
-                <img src="{{ url_for('static', filename='images/solargadget.jpg') }}" alt="Buy Gadgets" class="feature-image">
+			<div class="feature-card" data-url="{{ url_for('products') }}">
+				<img src="{{ url_for('static', filename='images/solargadget.jpg') }}" alt="Buy Gadgets" class="feature-image">
                 <h4>BUY GADGETS</h4>
                 <p>Get SMS and USSD alerts on energy consumption, outages, and payments.</p>
             </div>
@@ -81,7 +81,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 SolarConnect. All Rights Reserved.</p>
+        <p>&copy; 2024 Angaza. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

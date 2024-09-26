@@ -23,6 +23,13 @@ class RegistrationForm(FlaskForm):
         DataRequired(), 
         Email(message="Please enter a valid email address.")
     ])
+    phone = StringField(
+            'Phone',
+            validators=[
+                DataRequired(),
+                Length(min=10, max=13, message="Please Enter a valid phone number")
+                ]
+            )
     password = PasswordField('Password', validators=[
         DataRequired(),
         Length(min=6, message="Password should be at least 6 characters long.")

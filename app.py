@@ -4,7 +4,7 @@ from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash  # For hashing passwords
 from flask import jsonify
 
-from sms import sms_notifier
+# from sms import sms_notifier
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -77,7 +77,7 @@ def login():
                 user = User(user_id, user_info['username'])
                 login_user(user)  # Log the user in
                 flash('Login successful!', 'success')
-                return redirect(url_for('products'))  # Redirect to dashboard after login
+                return redirect(url_for('dashboard'))  # Redirect to dashboard after login
         
         # If login fails, show this message
         flash('Login unsuccessful. Please check your email and password.', 'danger')
@@ -85,22 +85,23 @@ def login():
 
 
 @app.route('/products')
-@login_required
 def products():
     return render_template('shop.html', products=products)
 
 
 @app.route('/dashboard')
-@login_required
+# login_required
 def dashboard():
     # Example data for the logged-in user (replace with real data from the database)
+    """
     user_data = {
         'username': current_user.username,
         'current_consumption': 320,  # Example energy consumption (in kWh)
         'daily_consumption': [30, 50, 60, 40, 55, 70, 65],  # Graph data for last 7 days
         'recommendation': 'Consider reducing usage during peak hours to save costs.'
     }
-    return render_template('dashboard.html', user_data=user_data)
+    """
+    return render_template('dashboard.html')
 
 
 @app.route('/logout')
@@ -111,6 +112,7 @@ def logout():
     return redirect(url_for('login'))
 
 
+"""
 @app.route('/hire-purchase', methods=['POST'])
 @login_required
 def hire_purchase():
@@ -141,6 +143,7 @@ def hire_purchase():
             'success': False,
             'message': 'Hirepurchase confirmed, but SMS notification failed.'
             }), 500
+"""
 
 
 if __name__ == '__main__':

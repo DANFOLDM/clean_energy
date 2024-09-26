@@ -14,7 +14,7 @@ body {
 /* Header Section */
 header {
     height: 100vh;
-    background: url('10-local.jpg') no-repeat center center/cover;
+    background: url('./images/solar.jpg') no-repeat center center/cover;
     position: relative;
 }
 

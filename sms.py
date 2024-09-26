@@ -1,4 +1,5 @@
 import africastalking
+import os
 from africastalking import SMS
 from dotenv import load_dotenv
 
@@ -9,7 +10,7 @@ load_dotenv('load.env')
 class SMSNotifier:
     def __init__(self):
         self.username = "RayHackathon1"
-        self.api_key = current_app.config['API_KEY']
+        self.api_key = os.getenv('API_KEY')
         africastalking.initialize(self.username, self.api_key)
         self.sms = africastalking.SMS()
 
